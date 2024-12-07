@@ -14,13 +14,14 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-console.log(process.env.FRONTEND_URL);
+console.log(process.env.FRONTEND_URL);  
 app.use(cors({
-  origin: process.env.FRONTEND_URL,  
+  origin: process.env.FRONTEND_URL, 
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,  
 }));
 
+app.options('*', cors());
 app.use("/api/users", userRouter);
 
 app.listen(process.env.PORT, () => {
